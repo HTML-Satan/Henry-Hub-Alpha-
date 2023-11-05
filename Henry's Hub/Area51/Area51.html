@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Password Prompt</title>
+    <link rel="stylesheet" href="Area51.css">
+</head>
+
+<body>
+    <script>
+        const correctPassword = "Henryrocks69";
+        const redirectToCorrectPage = "Area51Right.html";
+        const redirectToIncorrectPage = "index.html";
+
+        const enteredPassword = prompt("Enter the password:");
+        if (enteredPassword === correctPassword) {
+            window.location.href = redirectToCorrectPage;
+        } else {
+            window.location.href = redirectToIncorrectPage;
+        }
+    </script>
+</body>
+
+</html>

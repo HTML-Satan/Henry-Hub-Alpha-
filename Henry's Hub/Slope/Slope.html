@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Slope Game</title>
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0;
+            background-color: #87CEEB;
+            /* Set background color to sky blue */
+        }
+
+        #character {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #FFA07A;
+            /* Set character color to salmon */
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        button {
+            font-size: 16px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="character"></div>
+    <div id="controls">
+        <button id="leftButton">Left</button>
+        <button id="rightButton">Right</button>
+    </div>
+
+    <script>
+        const character = document.getElementById("character");
+        let characterX = 0;
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowRight") {
+                moveCharacter(5);
+            } else if (event.key === "ArrowLeft") {
+                moveCharacter(-5);
+            }
+        });
+
+        document.getElementById("leftButton").addEventListener("click", () => {
+            moveCharacter(-5);
+        });
+
+        document.getElementById("rightButton").addEventListener("click", () => {
+            moveCharacter(5);
+        });
+
+        function moveCharacter(dx) {
+            characterX += dx;
+            character.style.left = characterX + "px";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Black Canvas with Orange Circle</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            background-color: black;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const context = canvas.getContext('2d');
+
+        // Set canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Circle (car) properties
+        let circleX = canvas.width / 2;
+        let circleY = canvas.height / 2;
+        const circleRadius = 25;
+        const circleSpeed = 5;
+
+        // Draw the circle (car)
+        function drawCircle() {
+            context.beginPath();
+            context.arc(circleX, circleY, circleRadius, 0, Math.PI * 2);
+            context.fillStyle = 'orange';
+            context.fill();
+            context.closePath();
+        }
+
+        // Handle arrow key controls
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft' && circleX > circleRadius) {
+                circleX -= circleSpeed;
+            }
+            if (event.key === 'ArrowRight' && circleX < canvas.width - circleRadius) {
+                circleX += circleSpeed;
+            }
+            if (event.key === 'ArrowUp' && circleY > circleRadius) {
+                circleY -= circleSpeed;
+            }
+            if (event.key === 'ArrowDown' && circleY < canvas.height - circleRadius) {
+                circleY += circleSpeed;
+            }
+            clearCanvas();
+            drawCircle();
+        });
+
+        // Clear the canvas
+        function clearCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Initial drawing of the circle (car)
+        drawCircle();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>The Hubs Dino Game</title>
+
+</head>
+
+<body>
+    <div id="game-container">
+        <div id="dino"></div>
+    </div>
+
+    <script>
+        const dino = document.getElementById("dino");
+        let isJumping = false;
+
+        document.addEventListener("keydown", (event) => {
+            if (event.code === "Space" && !isJumping) {
+                jump();
+            }
+        });
+
+        function jump() {
+            let position = 0;
+            isJumping = true;
+
+            const jumpInterval = setInterval(() => {
+                if (position === 150) {
+                    clearInterval(jumpInterval);
+                    const fallInterval = setInterval(() => {
+                        if (position === 0) {
+                            clearInterval(fallInterval);
+                            isJumping = false;
+                        } else {
+                            position -= 10;
+                            dino.style.bottom = position + "px";
+                        }
+                    }, 20);
+                } else {
+                    position += 10;
+                    dino.style.bottom = position + "px";
+                }
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>
